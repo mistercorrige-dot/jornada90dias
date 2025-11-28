@@ -56,6 +56,7 @@ const firebaseConfig = {
 };
 
 // --- INICIALIZAÇÃO SEGURA ---
+// Usamos 'any' aqui para o TypeScript não reclamar da tipagem
 let app: any;
 let auth: any;
 let db: any;
@@ -167,6 +168,7 @@ const rawPlanData = [
 ];
 
 // --- MENSAGEM PADRÃO ---
+// (Corrigido: removido o parâmetro 'day' que não estava sendo usado)
 const getStaticReflection = () => {
   return "Ao ler este texto, lembre-se: Deus está com você em cada detalhe da sua jornada.";
 };
@@ -221,11 +223,12 @@ export default function App() {
   const [user, setUser] = useState<any>(null);
   const [userName, setUserName] = useState<any>(null);
   
-  // Inputs
+  // Inputs (CORREÇÃO: tempName foi restaurado aqui)
   const [inputName, setInputName] = useState("");
   const [inputEmail, setInputEmail] = useState("");
   const [inputPassword, setInputPassword] = useState("");
   const [authError, setAuthError] = useState("");
+  const [tempName, setTempName] = useState(""); // Variável restaurada!
 
   // Dados
   const [completedDays, setCompletedDays] = useState<any[]>([]);
