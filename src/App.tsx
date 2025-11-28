@@ -56,7 +56,6 @@ const firebaseConfig = {
 };
 
 // --- INICIALIZAÇÃO SEGURA ---
-// Usamos 'any' aqui para o TypeScript não reclamar da tipagem
 let app: any;
 let auth: any;
 let db: any;
@@ -168,7 +167,7 @@ const rawPlanData = [
 ];
 
 // --- MENSAGEM PADRÃO ---
-const getStaticReflection = (day: any) => {
+const getStaticReflection = () => {
   return "Ao ler este texto, lembre-se: Deus está com você em cada detalhe da sua jornada.";
 };
 
@@ -212,7 +211,7 @@ export default function App() {
   }
 
   // Estados UI
-  const [currentView, setCurrentView] = useState('dashboard');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'plan' | 'ranking'>('dashboard');
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState({ title: "", body: "" });
   const [loading, setLoading] = useState(true);
@@ -550,7 +549,7 @@ export default function App() {
           <div className="space-y-4">
             <div className="flex items-center space-x-2 text-amber-500"><Heart size={20} /><h3 className="font-bold text-lg">Palavra de Encorajamento</h3></div>
             <div className="bg-slate-900 p-6 rounded-lg border-l-4 border-amber-600 shadow-lg relative">
-               <p className="text-lg leading-relaxed text-slate-300 italic relative z-10">"{aiInsight ? aiInsight : getStaticReflection(activeDayData.day)}"</p>
+               <p className="text-lg leading-relaxed text-slate-300 italic relative z-10">"{aiInsight ? aiInsight : getStaticReflection()}"</p>
                {aiInsight && <div className="absolute top-0 right-0 p-2 opacity-20 text-amber-500"><Sparkles size={40} /></div>}
             </div>
             <div className="grid grid-cols-2 gap-3">
